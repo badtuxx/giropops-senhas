@@ -1,1 +1,1 @@
-# LINUXtips-giropops-senhas.
+# LINUXtips-giropops-senhas
