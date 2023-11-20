@@ -1,0 +1,31 @@
+version: '3'
+services:
+  giropops-senhas:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "5000:5000" 
+    networks:
+      - giropops 
+    volumes:
+     - strigus:/strigus
+
+    environment:
+      REDIS_HOST: redisdb
+
+  redisdb:
+    image: cgr.dev/chainguard/redis:latest
+
+    networks:
+      - giropops
+    
+    volumes:
+      - strigus:/strigus
+
+networks:
+  giropops:
+    driver: bridge
+
+volumes:
+  strigus:
