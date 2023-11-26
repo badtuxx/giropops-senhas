@@ -1,0 +1,23 @@
+---
+name: YAML Check
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint-yaml:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Install yamllint
+        run: |
+          pip install yamllint
+      - name: Lint YAML files recursively
+        run: |
+          find . -type f -name '*.yaml' -o -name '*.yml' -exec yamllint {} +
