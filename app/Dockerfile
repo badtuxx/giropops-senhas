@@ -16,9 +16,6 @@ COPY --from=builder /home/nonroot/.local/lib/python3.12/site-packages /home/nonr
 COPY --from=builder /home/nonroot/.local/bin /home/nonroot/.local/bin
 ENV PATH=$PATH:/home/nonroot/.local/bin
 
-#COPY ./app/* .
-#COPY ./app/app.py .
-#COPY ["./app/app.py", "static/", "templates/", "tailwind.config.js", "./"] 
 COPY ["tailwind.config.js", "LICENSE", "."]
 COPY static/ static/
 COPY templates/ templates/
