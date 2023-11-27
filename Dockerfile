@@ -2,7 +2,7 @@ FROM cgr.dev/chainguard/python:latest-dev as builder
 
 WORKDIR /app
 
-COPY requirements.txt .
+COPY ./app/requirements.txt .
 
 RUN pip install --no-cache-dir -r requirements.txt --user
 
@@ -16,8 +16,8 @@ COPY --from=builder /home/nonroot/.local/lib/python3.12/site-packages /home/nonr
 COPY --from=builder /home/nonroot/.local/bin /home/nonroot/.local/bin
 ENV PATH=$PATH:/home/nonroot/.local/bin
 
-COPY ["tailwind.config.js", "LICENSE", "."]
-COPY static/ static/
-COPY templates/ templates/
-COPY app.py .
+COPY ["./app/tailwind.config.js", "./app/LICENSE", "."]
+COPY ./app/static/ static/
+COPY ./app/templates/ templates/
+COPY ./app/app.py .
 ENTRYPOINT ["flask", "run", "--host=0.0.0.0"]
