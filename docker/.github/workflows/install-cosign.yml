@@ -1,0 +1,17 @@
+name: Install Cosign
+
+on:
+  workflow_dispatch: # Esta configuração permite acionar manualmente o workflow
+
+jobs:
+  example:
+    runs-on: ubuntu-latest
+    permissions: {}
+
+    steps:
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3.1.1
+
+      - name: Check install!
+        run: cosign version
+
