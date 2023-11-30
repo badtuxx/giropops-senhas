@@ -17,10 +17,6 @@ spec:
       containers:
         - image: cgr.dev/chainguard/redis:latest
           name: redis
-          securityContext:
-            readOnlyRootFilesystem: true
-            runAsUser: 1000
-            runAsNonRoot: true
           ports:
             - containerPort: 6379
           resources:
