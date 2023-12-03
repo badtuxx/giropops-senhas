@@ -1,0 +1,30 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: giropops-senhas-prometheus-rule
+  namespace: monitoring
+  labels:
+    prometheus: k8s
+    role: alert-rules
+    app.kubernets.io/name: kube-prometheus
+    app.kubernetes.io/part-of: kube-prometheus
+spec:
+  groups:
+  - name: giropops-senhas-prometheus-rule
+    rules:
+      - alert: GiropopsSenhasDown
+        expr: up{job="giropops-senhas"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Giropops Senhas sem pods rodando"
+          description: "Todos os pods do giropops senhas estao indisponiveis"
+      - alert: GiropopsSenhasCounter
+        expr: senha_gerada_total > 10
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Alto numero de senhas criadas"
+          description: "A aplicacao criou masi de dez senhas nos ultimos cinco minutos"

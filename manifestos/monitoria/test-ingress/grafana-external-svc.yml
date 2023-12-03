@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana-svc-bridge
+  namespace: default
+spec:
+  type: ExternalName
+  externalName: grafana.monitoring.svc.cluster.local
+  ports:
+  - port: 3000
+    protocol: TCP
+    targetPort: 3000
+  sessionAffinity: None

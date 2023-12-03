@@ -4,9 +4,11 @@ on:
   push:
     branches:
       - main
+      - feature/*
   pull_request:
     branches:
       - main
+      - feature/*
 
 jobs:
   lint-yaml:
@@ -19,5 +21,8 @@ jobs:
         run: |
           pip install yamllint
       - name: Lint YAML files recursively
-        run: |
-          find . -type f -name '*.yaml' -o -name '*.yml' -exec yamllint {} +
+        uses: karancode/yamllint-github-action@master
+        with:
+          yamllint_strict: false
+          yamllint_comment: true
+          yamllint_config_filepath: '.yamllint.yaml'

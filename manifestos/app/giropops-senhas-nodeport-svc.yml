@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: giropops-senhas-nodeport
+  labels:
+    app: giropops-senhas
+spec:
+  selector:
+    app: giropops-senhas
+  ports:
+  - port: 5000
+    name: giropops-port
+    targetPort: 5000
+  type: NodePort
