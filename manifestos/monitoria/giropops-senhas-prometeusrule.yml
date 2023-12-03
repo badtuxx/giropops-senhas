@@ -27,4 +27,20 @@ spec:
           severity: warning
         annotations:
           summary: "Alto numero de senhas criadas"
-          description: "A aplicacao criou masi de dez senhas nos ultimos cinco minutos"
+          description: "A aplicacao criou mais de dez senhas nos ultimos cinco minutos"
+      - alert: HighMemoryUsageGiropopsSenhas
+        expr: sum(container_memory_usage_bytes{pod_name="giropops-senhas"}) / sum(container_spec_memory_limit_bytes{pod_name="giropops-senhas"}) * 100 > 75
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "O uso de memoria pelo Giropops Senhas esta alto"
+          description: "O Giropops senhas esta consumindo 75% da memoria"
+      - alert: HighCPUUsageGiropopsSenhas
+        expr: sum(rate(container_cpu_usage_seconds_total{pod_name="giropops-senhas"}[5m])) / sum(container_spec_cpu_limit{pod_name="giropops-senhas"}) * 100 > 60
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "O uso de CPU pelo Giropops Senhas esta alto"
+          description: "O Giropops senhas esta consumindo 60% da CPU"
