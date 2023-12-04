@@ -21,7 +21,7 @@ A aplicação Giropos Senhas consiste em uma aplicação web que permite ao usu�
 
 #### Sobre a imagem
 Para a imagem base foi utilizada uma image distroless da chainguard ([link](https://edu.chainguard.dev/chainguard/chainguard-images/reference/python/)) o que garante uma maior segurança.
-![Relatório de Análise de Riscos usando o Trivy](.imgs/trivy.png)
+![Relatório de Análise de Riscos usando o Trivy](docs/images/trivy.png)
 
 ### Executar a Aplicação usando Docker Compose
 

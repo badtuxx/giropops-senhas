@@ -1,3 +1,4 @@
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -44,3 +45,15 @@ spec:
           ports:
             - containerPort: 5000
           imagePullPolicy: Always
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 5000
+            initialDelaySeconds: 3
+            periodSeconds: 3
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 5000
+            initialDelaySeconds: 5
+            periodSeconds: 5
