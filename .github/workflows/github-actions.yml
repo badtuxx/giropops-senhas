@@ -6,7 +6,7 @@ on:
     branches:
       - feature/*
   pull_request:
-   branches:
+    branches:
       - main
     types: [closed]
 
