@@ -6,10 +6,6 @@ on:
     branches:
       - feature/*
       - main
-  pull_request:
-    branches:
-      - main
-    types: [closed]
 
 jobs:
   lint-yaml:
