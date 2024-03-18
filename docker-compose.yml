@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  giropops-senhas:
+    image: nataliagranato/linuxtips-giropops-senhas:1.0
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - REDIS_HOST=redis
+    depends_on:
+      - redis
+
+  redis:
+    container_name: redis
+    image: redis:alpine3.19
+
+networks:
+  giropops-senhas:
+    driver: bridge
