@@ -26,7 +26,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@75359341f62c2d990e0aa8543e545c74eec643ff
       with:
-        images: nataliagranato/linuxtips-giropops-senhas
+        images: nataliagranato/linuxtips-giropops-senhas:1.0
 
     - name: Build and push Docker image
       uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0
