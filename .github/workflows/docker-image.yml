@@ -32,23 +32,9 @@ jobs:
       uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0
       id: build-and-push
       with:
-        context: ./
+        context: ./giropops-senhas
         file: ./Dockerfile
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         platforms: linux/amd64,linux/arm64
-
-    - name: Run Trivy vulnerability scanner
-      uses: aquasecurity/trivy-action@062f2592684a31eb3aa050cc61e7ca1451cecd3d
-      with:
-        image-ref: nataliagranato/linuxtips-giropops-senhas:1.0
-        format: 'sarif'
-        severity: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
-        output: 'trivy-results.sarif'
-
-    - name: Upload Trivy scan results to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v3
-      if: always()
-      with:
-        sarif_file: 'trivy-results.sarif'
