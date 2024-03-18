@@ -33,7 +33,7 @@ jobs:
       id: build-and-push
       with:
         context: .
-        file: ./Dockerfile
+        file: ./src/Dockerfile
         push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
